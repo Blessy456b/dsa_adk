@@ -53,20 +53,20 @@ Research consistently shows:
 2. Maintain engagement over long study periods through XP, streaks, badges, and level progression.
 
 
-### Why agents? -- Why are agents the right solution to this problem
+# Why agents? -- Why are agents the right solution to this problem
 Agents are uniquely suited to solve the ** DSA education**  problem because learning algorithms requires **multi-faceted content generation** that goes beyond simple question-answering. A single LLM call cannot simultaneously create a compelling narrative story, generate a relatable analogy, provide actionable learning tips, AND produce syntactically correct code in four different programming languages—each requiring different contexts, tones, and technical constraints. Our sequential agent architecture allows each specialized agent to focus on its specific task (storytelling, analogy creation, code generation) while maintaining coherence through shared state, ensuring that a student learning "Binary Search" receives a cohesive learning experience where the story about a librarian finding books connects meaningfully to the analogy about phone book searches, which then ties into clean, commented code implementations. This modular approach also enables us to iterate and improve individual agents (e.g., making the Story Agent more engaging) without disrupting the entire system, provides built-in resilience through retry mechanisms for API rate limits, and scales effortlessly as we add new content types (like visualizations or complexity analysis) by simply adding new agents to the pipeline—something impossible with monolithic prompt engineering.
 
-### Overall Architechture 
+# Overall Architechture 
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F29822908%2F60def79b3ffc0560f7145e915e1f8107%2Farch_dsa.png?generation=1764528694788812&alt=media)
 
-#### 1. **Multi-Agent Content Generation**
+### 1. **Multi-Agent Content Generation**
 Our system uses a **sequential agent architecture** powered by Google's ADK to generate personalized learning content:
 - **Story Agent:** Creates narrative contexts that make abstract algorithms relatable
 - **Analogy Agent:** Generates real-world analogies to explain complex concepts
 - **Learning Tip Agent:** Provides actionable, beginner-friendly guidance
 - **Code Generation Agents:** Produce implementations in Python, Java, C++, and C with detailed comments
 
-#### 2. **Gamified Learning Experience**
+### 2. **Gamified Learning Experience**
 Three interactive mini-games reinforce learning:
 - **Code Rearrangement:** Reconstruct shuffled algorithm implementations
 - **Fill-in-the-Blanks:** Complete code snippets with missing logic
@@ -85,8 +85,8 @@ Three interactive mini-games reinforce learning:
 #### **Concept Quizzes:**
 ![](https://www.googleapis.com/download/storage/v1/b/kaggle-user-content/o/inbox%2F29822908%2Fa58f4434ac0bdea834d47215f4ab7cf8%2Fqui.png?generation=1764528782221347&alt=media)
 
-### The Build 
-#### Key Technical Components
+# The Build 
+### Key Technical Components
 **Frontend:**
 - **Gradio** for interactive web interface
 - Tab-based navigation (Home, Problem Browser, AI Content, Games)
@@ -104,7 +104,7 @@ Three interactive mini-games reinforce learning:
 - Stdout capture for reliable output extraction
 - JSON parsing with fallback error handling
 
-#### 🎮 User Experience Flow
+# 🎮 User Experience Flow
 
 1. **Sign In/Sign Up:** User creates account or logs in
 2. **Browse Problems:** Select from 8 topics and 34 problems
@@ -118,7 +118,7 @@ Three interactive mini-games reinforce learning:
 6. **Track Progress:** Mark problems complete and earn XP
 
 
-#### 🛠️ Technologies Used
+# 🛠️ Technologies Used
 
 - **Google ADK (Agent Development Kit):** Agent orchestration framework
 - **Gemini 2.5 Flash Lite:** LLM powering all agents
@@ -127,7 +127,7 @@ Three interactive mini-games reinforce learning:
 - **Kaggle Notebooks:** Development and deployment environment
 - **JSON:** Data serialization and agent communication
 
-### ADK Concepts Demonstrated
+# ADK Concepts Demonstrated
 
 ### 1. **Multi-Agent System** ✅
 - **Sequential Agents:** Content Team and Code Team execute sub-agents in order
@@ -163,7 +163,7 @@ Three interactive mini-games reinforce learning:
 - **Response Time:** ~30-45 seconds for complete AI content generation
 - **Retry Resilience:** 10 attempts with 5-second delays for API reliability
 
-## 1. Notebook Overview & Requirements
+# 1. Notebook Overview & Requirements
 
 ### What this notebook does
 
@@ -188,7 +188,7 @@ Three interactive mini-games reinforce learning:
 
 If ADK is not available, the notebook falls back to a **mock agent** so the UI still works and returns placeholder AI content.
 
-## 2. DSA Content Setup – `dsa_data.py`
+# 2. DSA Content Setup – `dsa_data.py`
 
 This file defines the **core DSA roadmap data** used throughout the app.
 
@@ -221,7 +221,7 @@ Key components:
 - The **Problem Browser** tab to populate dropdowns and display details.  
 - The **progress tracker** to compute per-step completion percentage and to assign XP.
 
-## 3. Simple Local Auth – `backend_user.py`
+# 3. Simple Local Auth – `backend_user.py`
 
 Since this is a Kaggle notebook environment without a full backend, authentication is intentionally very simple and **file-based**.
 
@@ -246,24 +246,24 @@ Copy code
 ⚠️ This is not secure and is only meant for a single-user / demo environment (like a competition notebook).
 
 
-### Setup and Installation
+# Setup and Installation
 This README focuses on how to download, open, and use the Kaggle Notebook version of the project.
 
-#### 📥 1. Downloading the Kaggle Notebook
+### 📥 1. Downloading the Kaggle Notebook
 To use DSA Quest:
 Go to the repository’s Releases (or /notebooks folder).
 - Download the file:
 dsaquest-kaggle.ipynb
 - Save it locally.
   
-#### 📤 2. Uploading the Notebook to Kaggle
+### 📤 2. Uploading the Notebook to Kaggle
 - Open https://www.kaggle.com/code
 - Click + New Notebook
 - In the left sidebar → click File → Upload Notebook
 - Select dsaquest-kaggle.ipynb
 - You should now see the notebook loaded in Kaggle with all cells visible.
 
-#### 🔐 3. Adding Gemini API Key (Kaggle Secrets)
+### 🔐 3. Adding Gemini API Key (Kaggle Secrets)
 The DSA Quest notebook uses Gemini 2.5 Flash Lite via GOOGLE_API_KEY.
 To add your key:
 
@@ -281,9 +281,9 @@ GOOGLE_API_KEY = UserSecretsClient().get_secret("GOOGLE_API_KEY")
 If the secret is not set → the notebook switches to mock AI mode, so everything still works, but with placeholder AI outputs.
 ```
 
-#### ▶️ 4. Running the Kaggle Notebook
+### ▶️ 4. Running the Kaggle Notebook
 Once the notebook is uploaded:
-##### Step 1 — Run the entire notebook
+#### Step 1 — Run the entire notebook
 - Click Run All (top menu).
 The notebook will:
 - ✔ Create folders (/dsaquest)
@@ -304,7 +304,7 @@ You will see:
 - 👉 Click the public URL ending in .gradio.live
 This opens the full interactive app with
 
-#### 🧱 6. Project Structure (Auto-Generated by Notebook)
+# 🧱 6. Project Structure (Auto-Generated by Notebook)
 Running the notebook generates the following files:
 
 dsaquest/                     
@@ -320,7 +320,7 @@ dsaquest/
   └──progress.json                  # XP/progress saved here
 You don’t need to create or download these files — the notebook writes them automatically.
 
-#### 🧑‍🏫 7. How to Use the App (Inside Kaggle)
+# 🧑‍🏫 7. How to Use the App (Inside Kaggle)
 ##### A. Sign Up / Sign In
 Create a new account
 
@@ -351,26 +351,9 @@ Just re-run AI generation after a few seconds.
 - Problem: Notebook says files already exist
 Click Restart & Run All (fresh session).
 
-#### 📌 8. Requirements
+# 📌 8. Requirements
 Kaggle already includes:
 Dependencies for this notebook.No external installs required.{ gradio , google-adk }
-### ⚙️ Technology Stack
-- AI / Agentic Layer
--- Google ADK (Agent Development Kit)
--- Gemini 2.5 Flash Lite
-- Multi-agent workflow:
--- Input parsing agent
--- Story agent
--- Analogy agent
--- Tip agent
--- Multi-language code agents
--- Final aggregator agent
-- Frontend
--- Gradio Blocks UI
-- Backend
--- Python
--- JSON-based storage (users, progress, game state)
--- Robust ADK → mock fallback layer
 
 ### 🧪 Running Inside Kaggle (Recommended)
 This project is notebook-friendly.
@@ -382,7 +365,7 @@ Inside Kaggle:
 **ADK not installed?**
 → The system automatically switches to safe mock outputs.
 
-### Future Enhancements
+# Future Enhancements
 
 - **Expand Problem Database:** Add hundreds more problems to `dsa_data.py` covering advanced topics like segment trees, tries, and advanced graph algorithms, creating a comprehensive library of 300+ curated DSA problems across all difficulty levels
 - **Gamification System:** Fully integrate the badges and streaks system from `progress_tracker.py` to reward consistent learning with achievements like "7-Day Streak," "Binary Search Master," and "100 Problems Solved," creating a dopamine-driven learning loop that keeps students coming back
@@ -393,14 +376,14 @@ Inside Kaggle:
 - **A2A Protocol Integration:** Enable agent-to-agent communication for collaborative learning scenarios, where a "Tutor Agent" can request help from a "Visualization Agent" or "Debugging Agent" based on student needs
 -  **Switch from JSON files to Supabase/PostgreSQL** backend
 
-### Contributions are welcome!
+# Contributions are welcome!
 - Feel free to open PRs for:
 -- More games
 -- More DSA problems
 -- UI enhancements
 -- Bug fixes
 
-### 📄 10. License
+# 10. License
 MIT License
 
 # 🙌 11. Acknowledgements
