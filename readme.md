@@ -384,11 +384,24 @@ Inside Kaggle:
 -- Bug fixes
 
 # 10. License
-MIT License
+This project is released under the MIT License, which allows:
+- Free use, modification, and distribution
+- Commercial and non-commercial usage
+- Inclusion in open-source or proprietary systems
+- Users must simply retain the original copyright and license notice.
 
 # 🙌 11. Acknowledgements
 - Kaggle for notebook environment
 - Gradio for UI
 - Google Gemini for LLM
 - TakeUForward (Striver Sheet inspiration)
+Developed by Blessy Thomas
+Built with curiosity using google-adk and kaggle for Capstone Project Submission - Intensive AI Agentic Program
 
+# Contact
+For queries
+- github : https://github.com/Blessy456b
+- gmail : blessy456bthomas@gmail.com
+
+
+\
